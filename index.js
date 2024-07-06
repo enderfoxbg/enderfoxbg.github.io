@@ -1,54 +1,14 @@
-var $drag;
-var ofs;
+document.addEventListener("DOMContentLoaded", function () {
+  const API_KEY = "AIzaSyB3pJpnRMuRMnaqYW8SEVcGYDdP0oR3w7Q";
+  const CHANNEL_ID = "UC3SAwPDkdknh7p1lwyMwetQ";
+  const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=1`;
 
-function drag_begin(event) {
-  //Get the actual window
-  $drag = $(this).closest(".windowframe");
-
-  //Bring it to top of Z order by making it the target
-
-  //Retrieve its current position
-  var curofs = $drag.offset();
-
-  //Calculate mouse cursor position relative to top-left of window frame
-  ofs = {
-    left: event.pageX - curofs.left,
-    top: event.pageY - curofs.top,
-  };
-
-  //Set event handlers
-  $("body").on("mousemove", drag_mousemove);
-  $drag.on("mouseup", drag_end);
-  event.preventDefault();
-}
-
-function drag_end(event) {
-  $("body").off("mousemove", drag_mousemove);
-  $drag.off("mouseup", drag_end);
-}
-
-function drag_mousemove(event) {
-  $drag.css(
-    "transform",
-    "translateX(" +
-      (event.pageX - ofs.left) +
-      "px) translateY(" +
-      (event.pageY - ofs.top) +
-      "px)"
-  );
-  event.preventDefault();
-}
-
-$(function () {
-  $(".windowframe").on("mousedown", function (event) {});
-  $(".titlebar").on("mousedown", ".buttons", function (event) {
-    event.stopPropagation();
-  });
-  $(".moveable .titlebar").on("mousedown", drag_begin);
-  $(".titlebar").on("click", "button.maximise", function () {
-    $(this).closest(".windowframe").toggleClass("maximised moveable");
-  });
-  $(".titlebar").on("click", "button.close", function () {
-    $(this).closest(".windowframe").remove();
-  });
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const latestVideoId = data.items[0].id.videoId;
+      const iframe = document.getElementById("latestVideo");
+      iframe.src = `https://www.youtube.com/embed/${latestVideoId}`;
+    })
+    .catch((error) => console.error("Error fetching latest video:", error));
 });
