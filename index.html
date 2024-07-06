@@ -1,99 +1,122 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>EnderDev</title>
-    <link rel="stylesheet" href="index.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="windowframe appwindow moveable" id="app-window">
-      <a class="titlebar">
-        <div class="caption">Hello</div>
-        <div class="buttons"><button class="close"></button></div>
-      </a>
-      <div class="client"></div>
-      <!--Window Content-->
-      <!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <title>Document</title>
-          <link rel="stylesheet" href="index.css" />
-        </head>
-        <body>
-          <div style="align-items: center" class="client">
-            <h1>Hello, I'm EnderDev!</h1>
-            <p>
-              Hello, I'm a Youtuber. I enjoy technology. I love doing tech stuff
-              like antivirus tests, windows experiments and a lot more!
-              Subscribe to my YouTube channel:
-              <a
-                style="text-decoration: none; color: rgb(0, 101, 253)"
-                href="https://youtube.com/@enderdevcom"
-                target="_blank"
-                >@enderdevcom</a
-              >
-            </p>
-            <h2 style="text-align: center" id="changingColor">
-              My Latest Video
-            </h2>
-            <div style="text-align: center; margin-top: 5px">
-              <iframe
-                id="latestVideo"
-                width="400"
-                height="200"
-                src=""
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              >
-              </iframe>
-            </div>
-          </div>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="index.html">
+          <img style="border-radius: 5px" src="res/newlogo.png" alt="logo" />
+        </a>
 
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              const API_KEY = "AIzaSyB3pJpnRMuRMnaqYW8SEVcGYDdP0oR3w7Q";
-              const CHANNEL_ID = "UC3SAwPDkdknh7p1lwyMwetQ";
-              const url = `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&channelId=${CHANNEL_ID}&order=date&part=snippet&type=video&maxResults=1`;
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-              fetch(url)
-                .then((response) => response.json())
-                .then((data) => {
-                  const latestVideoId = data.items[0].id.videoId;
-                  const iframe = document.getElementById("latestVideo");
-                  iframe.src = `https://www.youtube.com/embed/${latestVideoId}`;
-                })
-                .catch((error) =>
-                  console.error("Error fetching latest video:", error)
-                );
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a href="about/" class="navbar-item">
+            <i style="margin-right: 5px" class="bx bxs-info-circle"></i>About
+          </a>
 
-              const colors = [
-                "red",
-                "blue",
-                "green",
-                "purple",
-                "orange",
-                "pink",
-              ];
-              let colorIndex = 0;
-              const h2Element = document.getElementById("changingColor");
+          <a href="projects/" class="navbar-item">
+            <i style="margin-right: 5px" class="bx bx-list-ul"></i>Projects
+          </a>
 
-              setInterval(() => {
-                h2Element.style.color = colors[colorIndex];
-                colorIndex = (colorIndex + 1) % colors.length;
-              }, 1000);
-            });
-          </script>
-        </body>
-      </html>
-    </div>
-    <script src="index.js"></script>
+          <a href="socials/" class="navbar-item">
+            <i style="margin-right: 5px" class="bx bxs-user-account"></i>Socials
+          </a>
+
+          <a href="https://dsc.gg/enderdevcom" class="navbar-item">
+            <i style="margin-right: 5px" class="bx bxs-flag"></i>Report a bug
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!--Content-->
+    <section style="justify-content: center" class="section">
+      <div
+        style="justify-content: center; text-align: center"
+        class="container"
+      >
+        <h1 class="title">Hello, I'm EnderDev!</h1>
+        <p style="margin-top: 15px" class="subtitle">
+          Hello, I'm a Youtuber. I enjoy technology. I love doing tech stuff
+          like antivirus tests, windows experiments and a lot more! Subscribe to
+          my YouTube channel:
+          <a
+            style="text-decoration: none; color: rgb(0, 101, 253)"
+            href="https://youtube.com/@enderdevcom"
+            target="_blank"
+            >@enderdevcom</a
+          >
+        </p>
+
+        <iframe
+          id="latestVideo"
+          width="600"
+          height="300"
+          src=""
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        >
+        </iframe>
+        <p class="subtitle">
+          Find out more about me using the navigation bar! See you there!~
+        </p>
+      </div>
+    </section>
   </body>
+  <style>
+    body {
+      --sb-track-color: #232e33;
+      --sb-thumb-color: #00cfff;
+      --sb-size: 4px;
+    }
+
+    body::-webkit-scrollbar {
+      width: var(--sb-size);
+    }
+
+    body::-webkit-scrollbar-track {
+      background: var(--sb-track-color);
+      border-radius: 5px;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background: var(--sb-thumb-color);
+      border-radius: 5px;
+      border: 1px solid #232e33;
+    }
+
+    @supports not selector(::-webkit-scrollbar) {
+      body {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+      }
+    }
+  </style>
+  <script src="index.js"></script>
 </html>
